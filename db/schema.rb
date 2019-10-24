@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191024153930) do
+ActiveRecord::Schema.define(version: 20191024154613) do
 
   create_table "brands", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",       null: false
@@ -43,6 +43,28 @@ ActiveRecord::Schema.define(version: 20191024153930) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_evaluations_on_user_id", using: :btree
+  end
+
+  create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",                               null: false
+    t.text     "description",          limit: 65535, null: false
+    t.string   "status",                             null: false
+    t.string   "size"
+    t.string   "shipping_charge",                    null: false
+    t.string   "days_before_shipment",               null: false
+    t.integer  "price",                              null: false
+    t.integer  "saler_id",                           null: false
+    t.integer  "buyer_id",                           null: false
+    t.integer  "prefecture_id",                      null: false
+    t.integer  "category_id",                        null: false
+    t.integer  "brand_id",                           null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["brand_id"], name: "index_items_on_brand_id", using: :btree
+    t.index ["buyer_id"], name: "fk_rails_bac2cf3aef", using: :btree
+    t.index ["category_id"], name: "index_items_on_category_id", using: :btree
+    t.index ["prefecture_id"], name: "index_items_on_prefecture_id", using: :btree
+    t.index ["saler_id"], name: "fk_rails_08d97cf4c9", using: :btree
   end
 
   create_table "prefectures", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -81,5 +103,10 @@ ActiveRecord::Schema.define(version: 20191024153930) do
 
   add_foreign_key "credits", "users"
   add_foreign_key "evaluations", "users"
+  add_foreign_key "items", "brands"
+  add_foreign_key "items", "categories"
+  add_foreign_key "items", "prefectures"
+  add_foreign_key "items", "users", column: "buyer_id"
+  add_foreign_key "items", "users", column: "saler_id"
   add_foreign_key "users", "prefectures"
 end
