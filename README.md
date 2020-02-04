@@ -7,6 +7,14 @@ url: http://3.115.217.15/
 <br>ID: 56b
 <br>Password: 1005
 
+# プレビュー
+トップページ<br>
+<img width="952" alt="スクリーンショット 2020-02-04 16.45.33.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/433361/8fbd0334-7f5b-a62f-9258-00fc4ffa16df.png">
+商品出品画面<br>
+<img width="952" alt="スクリーンショット 2020-02-04 16.44.52.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/433361/824e1df2-9561-45d1-f0a1-23693ceefcac.png">
+商品検索画面<br>
+<img width="1107" alt="スクリーンショット 2020-02-04 16.47.03.png" src="https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/433361/af4bb048-4fa1-1cb8-27ca-88ddd24b5f92.png">
+
 # 開発メンバー
 * 古谷篤志(SM)
 * 石川友恵
