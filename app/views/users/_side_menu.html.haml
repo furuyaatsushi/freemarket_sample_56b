@@ -23,7 +23,7 @@
           出品する
           = fa_icon "chevron-right"
       %li
-        = link_to '', class: "mypage__nav-list-item" do
+        = link_to exhibiting_users_path(id: current_user.id), class: "mypage__nav-list-item" do
           出品した商品-出品中
           = fa_icon "chevron-right"
       %li

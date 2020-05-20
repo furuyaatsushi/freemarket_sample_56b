@@ -67,6 +67,64 @@
           text-align: center;
         }
       }
+      .exhibiting_box {
+        width: 700px;
+        &__status {
+          height: 70px;
+          &--1 {
+            width: 233px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+            float: left;
+            background-color: #f5f5f5;
+          }
+          &--2 {
+            width: 233px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+            float: left;
+          }
+          &--3 {
+            width: 233px;
+            height: 70px;
+            line-height: 70px;
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+            float: left;
+          }
+        }
+        .exhibiting_box-item {
+          width: 700px;
+          background-color: white;
+          &__myexhibiting {
+            height: 70px;
+            background-color: white;
+            width: 700px;
+            border: solid 1px #f5f5f5;
+            &--image {
+              width: 50px;
+              height: 50px;
+              margin: 10px;
+              float: left;
+            }
+            &--detail {
+              width: 630px;
+              height: 70px;
+              .exhibiting-name {
+                color: black;
+                margin: 10px;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

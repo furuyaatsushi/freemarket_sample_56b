@@ -23,6 +23,12 @@ crumb :edit do
   parent :show
 end
 
+# 出品中
+crumb :exhibiting do 
+  link "出品中", exhibiting_users_path
+  parent :show
+end
+
 # 本人情報の登録
 crumb :edit_personal do 
   link "本人情報の登録", edit_personal_path
@@ -47,6 +53,14 @@ crumb :items_name do
   @item = Item.find(params[:id])
   # @item.name = 商品名
   link @item.name, item_path
+end
+
+crumb :items_name2 do
+  #該当のidの情報を１件だけ取得する
+  @item = Item.find(params[:id])
+  # @item.name = 商品名
+  link "出品詳細画面", item_path
+  parent :exhibiting
 end
 
 # 検索結果ページ

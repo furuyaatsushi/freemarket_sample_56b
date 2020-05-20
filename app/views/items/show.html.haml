@@ -1,4 +1,13 @@
 = render partial: 'shared/main_header'
+- unless @user.id != current_user.id
+  %nav.bread-crumbs
+    // パンくずリスト
+    .bread-crumbs__line
+      -# config/breadcrumbs.rbに定義したitems_nameを呼び出し
+      - breadcrumb :items_name2
+      -# 下記を記述した箇所にパンくずリストを表示させる。
+      -# separatorはパンくずの間の区切り「&rsaquo」は出力されると「›」になる。
+      = breadcrumbs separator: " &rsaquo; ", class:"bread-crumbs-list"
 
 .information-item
   .information-item_content
@@ -154,13 +163,6 @@
         - else
           .item-buy-btn-desabled
             売り切れました
-      - else
-        = link_to edit_item_path(@item.id) do
-          .information-item_content__edit
-            編集する
-        = link_to item_path(@item.id), method: :delete, data: { confirm: "本当に削除しますか？" } do
-          .information-item_content__destroy
-            削除する
     - else
       - if @item.buyer_id.nil?
         = link_to confirmation_item_path do
@@ -173,31 +175,44 @@
     .information-item_content__description
       = @item.description
     
-    .information-item_content__bottom
-      .information-item_content__bottom--like
-        .information-item_heart-icon
-          = fa_icon 'heart', class: 'fa-heart'
-        .information-item_like
-          いいね！
-        .information-item_like-number
-          10
-      .information-item_content__bottom--report
-        .information-item_flag-icon
-          = fa_icon 'flag', class: 'fa-flag'
-        .information-item_report
-          不適切な商品の報告
-      .information-item_content__bottom--safe
+    - unless @user.id == current_user.id
+      .information-item_content__bottom
+        .information-item_content__bottom--like
+          .information-item_heart-icon
+            = fa_icon 'heart', class: 'fa-heart'
+          .information-item_like
+            いいね！
+          .information-item_like-number
+            10
+        .information-item_content__bottom--report
+          .information-item_flag-icon
+            = fa_icon 'flag', class: 'fa-flag'
+          .information-item_report
+            不適切な商品の報告
+        .information-item_content__bottom--safe
+          .information-item_lock-icon
+            = fa_icon 'lock', class: 'fa_lock'
+          .information-item_safe
+            あんしん・あんぜんへの取り組み
+    
+      .safe_effort
         .information-item_lock-icon
           = fa_icon 'lock', class: 'fa_lock'
         .information-item_safe
           あんしん・あんぜんへの取り組み
-    
-    .safe_effort
-      .information-item_lock-icon
-        = fa_icon 'lock', class: 'fa_lock'
-      .information-item_safe
-        あんしん・あんぜんへの取り組み
-
+  
+  - unless @user.id != current_user.id
+    .exhibit_edit-and-delete_box
+      = link_to edit_item_path(@item.id) do
+        .exhibit_edit-and-delete_box__edit
+          商品の編集
+      .exhibit_edit-and-delete_box__or
+        or
+      .exhibit_edit-and-delete_box__stop
+        出品を一旦停止する
+      = link_to item_path(@item.id), method: :delete, data: { confirm: "本当に削除しますか？" } do
+        .exhibit_edit-and-delete_box__delete
+          この商品を削除する
 
   .information-item_comment
     .information-item_comment__content
@@ -335,14 +350,16 @@
               .information-item_sample-box__price
                 ¥
                 = category_item.price
-%nav.bread-crumbs
-  // パンくずリスト
-  .bread-crumbs__line
-    -# config/breadcrumbs.rbに定義したitems_nameを呼び出し
-    - breadcrumb :items_name
-    -# 下記を記述した箇所にパンくずリストを表示させる。
-    -# separatorはパンくずの間の区切り「&rsaquo」は出力されると「›」になる。
-    = breadcrumbs separator: " &rsaquo; ", class:"bread-crumbs-list"
+
+- unless @user.id != current_user.id
+  %nav.bread-crumbs
+    // パンくずリスト
+    .bread-crumbs__line
+      -# config/breadcrumbs.rbに定義したitems_nameを呼び出し
+      - breadcrumb :items_name
+      -# 下記を記述した箇所にパンくずリストを表示させる。
+      -# separatorはパンくずの間の区切り「&rsaquo」は出力されると「›」になる。
+      = breadcrumbs separator: " &rsaquo; ", class:"bread-crumbs-list"
 
 
 = render partial: 'shared/main_aside'

@@ -1,0 +1,39 @@
+.user-container
+  = render partial: 'shared/main_header'
+  %nav.bread-crumbs
+    // パンくずリスト
+    .bread-crumbs__line
+      - breadcrumb :exhibiting
+      = breadcrumbs separator: " &rsaquo; ", class:"bread-crumbs-list"
+
+  .l-container.cleafix
+    .l-content
+      %section.l-chapter-container
+        %h2.l-chapter-head 出品した商品
+        .exhibiting_box
+          .exhibiting_box__status
+            .exhibiting_box__status--1
+              出品中
+            .exhibiting_box__status--2
+              取引中
+            .exhibiting_box__status--3
+              売却済み
+          .exhibiting_box-item
+            - @items.each do |item|
+              = link_to item_path(item) do
+                .exhibiting_box-item__myexhibiting
+                  .exhibiting_box-item__myexhibiting--image
+                    .exhibiting-image
+                      = image_tag item.photos.first.photo, style: "width: 50px; height: 50px;"
+                  .exhibiting_box-item__myexhibiting--detail
+                    .exhibiting-name
+                      = item.name
+          
+    = render partial: "side_menu"
+
+  //バナーのテンプレートを挿入
+= render partial: "shared/main_aside"
+//フッターのテンプレートを挿入
+= render partial: "shared/main_footer"
+//出品ボタンのテンプレート呼びだし
+= render partial: "shared/sell_btn"

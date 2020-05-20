@@ -20,6 +20,12 @@ class UsersController < ApplicationController
   def card
   end
 
+  def exhibiting
+    @user = User.find(current_user.id)
+    @items = Item.where(saler_id: @user.id).order("id DESC").limit(15)
+  end
+
+
   private
 
   def set_search
